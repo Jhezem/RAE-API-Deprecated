@@ -45,5 +45,13 @@ module.exports = {
         } else {
             return "Esta palabra si existe";
         }
+    },
+    async Significado(palabra) {
+        const $ = await request({
+            uri: 'https://dle.rae.es/srv/search?w=' + palabra,
+            transform: body => cheerio.load(body)
+        });
+        const resultado = await $("#resultados").text().trim();
+        return resultado;
     }
 };

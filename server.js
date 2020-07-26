@@ -5,6 +5,12 @@ app.get('/', async (req, res) => {
     res.send('application loaded');
 });
 
+app.get('/significado/:word', async (req, res) => {
+    const { word } = req.params;
+    console.log(word);
+    res.send({ significado: await scraper.Significado(word) });
+});
+
 app.get('/existe/:word', async (req, res) => {
     const { word } = req.params;
     console.log(word);
